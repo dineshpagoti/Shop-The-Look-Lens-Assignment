@@ -1,0 +1,28 @@
+-- Table: Hotels
+CREATE TABLE Hotels (
+    hotel_id INT PRIMARY KEY,
+    hotel_name VARCHAR(255) NOT NULL
+);
+
+-- Table: Menus
+CREATE TABLE Menus (
+    menu_id INT PRIMARY KEY,
+    menu_name VARCHAR(255) NOT NULL,
+    hotel_id INT,
+    FOREIGN KEY (hotel_id) REFERENCES Hotels(hotel_id)
+);
+
+-- Table: FoodItems
+CREATE TABLE FoodItems (
+    food_id INT PRIMARY KEY,
+    food_name VARCHAR(255) NOT NULL
+);
+
+-- Junction Table: MenuFoodItems
+CREATE TABLE MenuFoodItems (
+    menu_id INT,
+    food_id INT,
+    PRIMARY KEY (menu_id, food_id),
+    FOREIGN KEY (menu_id) REFERENCES Menus(menu_id),
+    FOREIGN KEY (food_id) REFERENCES FoodItems(food_id)
+);
